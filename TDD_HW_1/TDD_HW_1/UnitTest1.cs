@@ -24,5 +24,22 @@ namespace TDD_HW_1
             CollectionAssert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void Test_取4筆_Revenue欄位_總和()
+        {
+            //arrange
+            var field = "Revenue";
+            var subgroup = 4;
+            var expected = new[] { 50, 66, 60 };
+
+            IDaoSheet daoStub = new IDaoSheetStub(); //注入假資料
+            var target = new Sheet(daoStub); //先透過ctor 處理 di
+
+            //act
+            var actual = target.SumByFieldAndSubgroup(field, subgroup);
+
+            //assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
     }
 }
